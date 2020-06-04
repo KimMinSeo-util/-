@@ -1,2 +1,5 @@
-생활코딩 Coding Everybody
-https://opentutorials.org/course/3930
+public class HelloWorldApp {
+	public static void main(String[] args) {
+		System.out.println("Hello World!!");
+	}
+}
