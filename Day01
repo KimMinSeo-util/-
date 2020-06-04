@@ -1,0 +1,139 @@
+JAVA1-1. 수업소개
+
+  Computer Programming Language: JAVA
+
+      * 온라인 편집기
+      JDoodle - free Online Compiler, Editor for Java, C/C++, etc
+
+JAVA1-2. JAVA설치하기
+JAVA1-3. JAVA 개발환경 eclipse 설치
+
+
+      * Project layout의미
+      - Use project folder as root for sources and class files
+        프로젝트 최상위 directory에 sourcecode & compile된  실행파일인 Classfile을 모두 같은 곳에 둔다.
+      - Create separate folders for sources and class files
+        다른 곳에 두겠다. Configure default에서 src폴더와(sourcecode보관하는 위치) bin폴더(Compile한 결과)
+
+JAVA1-4.1. A/S강의 Editor dose not contain a main type 오류가 발생할 때
+	          : 위에 Project layout할때  Create separate folders for sources and class files로 선택하여 HelloWorld.java의 위치가 맞지않음
+
+JAVA1-4.2. 실행 - JAVA의 동작원리
+        	: 사람이 알아 볼 수 있는 코드를 컴파일하면 컴퓨터가 이해 할 수 있는 class파일이 생성됨. Run시키면 JAVA Virtual machine(JVM)을 통해 결과를 컴퓨터로 출력
+
+JAVA1-5.a Hello JAVA World
+        	: Swing을 이용해서 데스크탑 앱을 제작한다.
+
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+
+public class HelloWorldGUIApp{
+	public static void main(String[] args) {
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				JFrame frame = new JFrame("HelloWorld GUI");
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frame.setPreferredSize(new Dimension(400, 300));
+				JLabel label = new JLabel("Hello World", SwingConstants.CENTER);
+				frame.getContentPane().add(label);
+				Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+				frame.setLocation(dim.width / 2 - 400 / 2, dim.height / 2 - 300 / 2);
+
+				frame.pack();
+				frame.setVisible(true);
+			}
+		});
+
+	}
+}
+
+JAVA1-5.b JAVA로 사물 제어하기(IOT)
+	: JAVA를 이용하여 RaspberryPi 작동하기(Hello모스부호실행)
+
+
+import com.pi4j.io.gpio.GpioController;
+import com.pi4j.io.gpio.GpioFactory;
+import com.pi4j.io.gpio.GpioPinDigitalOutput;
+import com.pi4j.io.gpio.PinState;
+import com.pi4j.io.gpio.RaspiPin;
+
+public class HelloWorldRaspberryPi {
+	public static void main(String[] args) throws InterruptedException {
+		final GpioController gpio = GpioFactory.getInstance();
+		final GpioPinDigitalOutput pin = gpio.provisionDigitalOutputPin(Raspipin.GPIO_01, "PinLED", PinState.LOW);
+		final int SHORT_INTERVAL = 200;
+		final int LONG_INTERVAL = SHORT_INTERVAL * 3;
+		final int LETTER_INTERVAL = SHORT_INTERVAL * 7;
+
+		while (true) {
+			// H부분
+			pin.high();
+			Thread.sleep(SHORT_INTERVAL);
+			pin.low();
+			Thread.sleep(LONG_INTERVAL);
+			pin.high();
+			Thread.sleep(SHORT_INTERVAL);
+			pin.low();
+			Thread.sleep(LONG_INTERVAL);
+			pin.high();
+			Thread.sleep(SHORT_INTERVAL);
+			pin.low();
+			Thread.sleep(LONG_INTERVAL);
+			pin.high();
+			Thread.sleep(SHORT_INTERVAL);
+			pin.low();
+			Thread.sleep(LONG_INTERVAL);
+
+			// e 부분
+			pin.high();
+			Thread.sleep(SHORT_INTERVAL);
+			pin.low();
+			Thread.sleep(LONG_INTERVAL);
+
+			// l 부분
+			pin.high();
+			Thread.sleep(SHORT_INTERVAL);
+			pin.low();
+			Thread.sleep(SHORT_INTERVAL);
+
+			pin.high();
+			Thread.sleep(LONG_INTERVAL);
+			pin.low();
+			Thread.sleep(SHORT_INTERVAL);
+
+			pin.high();
+			Thread.sleep(SHORT_INTERVAL);
+			pin.low();
+			Thread.sleep(SHORT_INTERVAL);
+			pin.high();
+			Thread.sleep(SHORT_INTERVAL);
+			pin.low();
+			Thread.sleep(LONG_INTERVAL);
+
+			// l 부분
+			pin.high();
+			Thread.sleep(SHORT_INTERVAL);
+			pin.low();
+			Thread.sleep(SHORT_INTERVAL);
+
+			pin.high();
+			Thread.sleep(LONG_INTERVAL);
+			pin.low();
+			Thread.sleep(SHORT_INTERVAL);
+
+			pin.high();
+			Thread.sleep(SHORT_INTERVAL);
+			pin.low();
+			Thread.sleep(SHORT_INTERVAL);
+			pin.high();
+			Thread.sleep(SHORT_INTERVAL);
+			pin.low();
+			Thread.sleep(LONG_INTERVAL);
+
+		}
+	}
+}
